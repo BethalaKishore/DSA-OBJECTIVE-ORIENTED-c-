@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-// Base class for personal details
+
 class PersonalDetails {
 protected:
     std::string name;
@@ -16,7 +16,7 @@ public:
     }
 };
 
-// Base class for professional details
+
 class ProfessionalDetails {
 protected:
     std::string designation;
@@ -31,7 +31,7 @@ public:
     }
 };
 
-// Derived class for employee details using multiple inheritance
+
 class Employee : public PersonalDetails, public ProfessionalDetails {
 public:
     Employee(const std::string &n, int a, const std::string &d, double s)
@@ -44,10 +44,10 @@ public:
 };
 
 int main() {
-    // Creating an employee object
+    
     Employee emp("John Doe", 30, "Software Engineer", 85000.00);
 
-    // Displaying employee details
+    
     emp.displayEmployeeDetails();
 
     return 0;

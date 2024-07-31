@@ -1,34 +1,36 @@
 #include <iostream>
-using namespace std;
+#include <cmath>
 
-class PrimeChecker {
-public:
-    bool isPrime(int number) {
-        if (number <= 1) {
-            return false;
-        }
-        for (int i = 2; i * i <= number; i++) {
-            if (number % i == 0) {
-                return false;
-            }
-        }
+
+bool isPrime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    if (n <= 3) {
         return true;
     }
-};
+    if (n % 2 == 0 || n % 3 == 0) {
+        return false;
+    }
+    for (int i = 5; i * i <= n; i += 6) {
+        if (n % i == 0 || n % (i + 2) == 0) {
+            return false;
+        }
+    }
+    return true;
+}
 
 int main() {
-    PrimeChecker checker;
-    int num;
-
-    cout << "Enter an integer: ";
-    cin >> num;
-
-    if (checker.isPrime(num)) {
-        cout << num << " is a prime number." << endl;
+    int number;
+    std::cout << "Enter an integer: ";
+    std::cin >> number;
+    
+    if (isPrime(number)) {
+        std::cout << number << " is a prime number." << std::endl;
     } else {
-        cout << num << " is not a prime number." << endl;
+        std::cout << number << " is not a prime number." << std::endl;
     }
-
+    
     return 0;
 }
 

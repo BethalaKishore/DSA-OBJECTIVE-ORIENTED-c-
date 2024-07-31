@@ -2,17 +2,14 @@
 
 class MyClass {
 private:
-    static int count;  
+    static int count; 
 
 public:
     MyClass() {
-        ++count;  
+        count++; 
     }
 
-    ~MyClass() {
-        --count;  
-    }
-
+    
     static void showcount() {
         std::cout << "Number of objects created: " << count << std::endl;
     }
@@ -22,18 +19,20 @@ public:
 int MyClass::count = 0;
 
 int main() {
+    
     MyClass obj1;
-    MyClass::showcount();  
-
     MyClass obj2;
-    MyClass::showcount();  
+    MyClass obj3;
 
-    {
-        MyClass obj3;
-        MyClass::showcount();  
-    }  
+    
+    MyClass::showcount();
 
-    MyClass::showcount();  
+    
+    MyClass obj4;
+    MyClass obj5;
+
+    
+    MyClass::showcount();
 
     return 0;
 }

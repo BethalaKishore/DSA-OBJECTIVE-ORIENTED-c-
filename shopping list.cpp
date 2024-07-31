@@ -1,99 +1,98 @@
-#include <iostream>
-#include <vector>
-
-class ShoppingList {
-private:
-    struct Item {
-        int code;
-        float price;
-    };
-
-    std::vector<Item> items;
-
-public:
-    void addItem(int code, float price) {
-        Item newItem;
-        newItem.code = code;
-        newItem.price = price;
-        items.push_back(newItem);
-        std::cout << "Item added: Code=" << code << ", Price=" << price << std::endl;
-    }
-
-    void deleteItem(int code) {
-        auto it = std::remove_if(items.begin(), items.end(), [code](const Item& item) {
-            return item.code == code;
-        });
-
-        if (it != items.end()) {
-            items.erase(it, items.end());
-            std::cout << "Item deleted: Code=" << code << std::endl;
-        } else {
-            std::cout << "Item with code " << code << " not found." << std::endl;
-        }
-    }
-
-    void printTotalValue() const {
-        float total = 0.0f;
-        for (const auto& item : items) {
-            total += item.price;
-        }
-        std::cout << "Total value of the order: " << total << std::endl;
-    }
-
-    void printList() const {
-        if (items.empty()) {
-            std::cout << "The shopping list is empty." << std::endl;
-            return;
-        }
-
-        std::cout << "Shopping List:" << std::endl;
-        for (const auto& item : items) {
-            std::cout << "Code: " << item.code << ", Price: " << item.price << std::endl;
-        }
-    }
+#include<iostream>
+using namespace std;
+const int m=50;
+class items
+{
+	int itemcode[m];
+	float itemPrice[m];
+	int count;
+	public:
+		void CNT()
+		{
+			count = 0;
+		}
+		void getitem();
+		void display();
+		void displaysum();
+		void remove();
+		void displayItems();
 };
-
-int main() {
-    ShoppingList list;
-    int choice, code;
-    float price;
-
-    while (true) {
-        std::cout << "\nMenu:\n";
-        std::cout << "1. Add Item\n";
-        std::cout << "2. Delete Item\n";
-        std::cout << "3. Print Total Value\n";
-        std::cout << "4. Print Shopping List\n";
-        std::cout << "5. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
-        switch (choice) {
-        case 1:
-            std::cout << "Enter item code: ";
-            std::cin >> code;
-            std::cout << "Enter item price: ";
-            std::cin >> price;
-            list.addItem(code, price);
-            break;
-        case 2:
-            std::cout << "Enter item code to delete: ";
-            std::cin >> code;
-            list.deleteItem(code);
-            break;
-        case 3:
-            list.printTotalValue();
-            break;
-        case 4:
-            list.printList();
-            break;
-        case 5:
-            return 0;
-        default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
-        }
-    }
-
-    return 0;
+void items :: getitem()
+{
+	cout<<"Enter item code :";
+	cin>>itemcode[count];
+	cout<<"Enter item cost :";
+	cin>>itemPrice[count];
+	count++;
 }
+void items :: displaysum()
+{
+	float sum =0;
+	for(int i=0;i<count;i++)
+	{
+		sum = sum+itemPrice[i];
+	}
+	cout<<"\nTotal Value :"<<sum<<"\n";;
+	
+}
+void items :: remove()
+{
+	int a;
+	cout<<"Enter item code: ";
+	cin>>a;
+	for(int i=0;i<count;i++)
+	   if(itemcode[i] == a)
+	       itemPrice[i] = 0;
+ } 
+ void items :: displayItems()
+ {
+ 	cout<<"\n Code Price\n";
+ 	for(int i=0;i<count;i++)
+ 	{
+ 		cout<<"\n"<<itemcode[i];
+ 		cout<<" "<<itemPrice[i];
+	 }
+	 cout<<"\n";
+ }
+int main()
+{
+ items order;
+ order.CNT();
+ int x;
+ do{
+ 	cout<<"\n you can do the following:";
+ 	cout<<"Enter Appropriate number \n";
+ 	cout<<"\n1 : Add an item";
+ 	cout<<"\n2 : Display Total Value";
+ 	cout<<"\n3 : Delete an item";
+ 	cout<<"\n4 : Display all items";
+ 	cout<<"\n5 : Quit";
+ 	cout<<"\n\n Choice : ";
+ 	cin>>x;
+ 	 switch(x)
+ 	 {
+ 		case 1:
+ 			order.getitem();
+ 			break;
+ 		case 2:
+		    order.displaysum();
+		    break;
+		case 3:
+		    order.remove();
+			break;
+		case 4:
+		    order.displayItems();
+			break;
+		case 5:
+		    break;
+		default:
+		   cout<<"Invalid Output\n"	;
+	
 
+		 	
+	 }
+ 	
+   }while(x!=5);
+	 
+
+}
